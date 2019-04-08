@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Video Streaming Demonstration</h1>
+  {% from "includes/_formhelpers.html" import render_field %}
+    <html>
+      <head>
+        <title>Video Streaming Demonstration</title>
+      </head>
+      <body>
+        <img src="{{ url_for('video_feed') }}">
+      </body>
+    </html>
+{% endblock %}

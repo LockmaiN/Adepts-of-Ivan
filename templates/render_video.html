@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Render Bad Road</h1>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      {{render_field(form.input_video, class_="form-control")}}
+    </div>
+    <div style="display: flex">
+      <p><input type="submit" class="btn btn-success btn-lg" value="Submit" onclick="loadFunc()"></p>
+      <div class="loader" id="load"></div>
+    </div>
+  </form>
+  {% if output_video_source %}
+    <h1>Preprocessed Video</h1>
+    <video width="854" height="480" controls="controls">
+        <source src="{{output_video_source}}?r={{random_str}}" type="video/mp4">
+    </video><br/>
+    <a href="{{output_video_source}}?r={{random_str}}" download class="btn btn-success btn-lg"
+       style="margin-top: 30px; margin-bottom: 50px;">Download</a>
+  {% endif %}
+
+  <script>
+    function loadFunc() {
+        document.getElementById("load").style.display = "block";
+    }
+  </script>
+
+{% endblock %}
